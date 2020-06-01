@@ -27,7 +27,6 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl-lib))
 (require 'dash-functional)
 
 
@@ -87,12 +86,12 @@ Examples:
       (error "Numbered placeholders <n> should not be combined with <>."))
     (when (member '<rest> symbols)
       (!cons (list '<rest>
-                   (case highest-index-used
+                   (pcase highest-index-used
                      ;; optimize expansion for low n
                      (0 argsym)
                      (1 `(cdr ,argsym))
                      (2 `(cddr ,argsym))
-                     (t `(seq-drop ,argsym ,highest-index-used))))
+                     (_ `(seq-drop ,argsym ,highest-index-used))))
              bindings))
     (--map (!cons (list  it
                          `(nth 0 ,argsym))
@@ -147,12 +146,12 @@ Examples:
       (error "Numbered placeholders <n> should not be combined with <>."))
     (when (member '<rest> symbols)
       (!cons (list '<rest>
-                   (case highest-index-used
+                   (pcase highest-index-used
                      ;; optimize expansion for low n
                      (0 argsym)
                      (1 `(cdr ,argsym))
                      (2 `(cddr ,argsym))
-                     (t `(seq-drop ,argsym ,highest-index-used))))
+                     (_ `(seq-drop ,argsym ,highest-index-used))))
              bindings))
     (--map (!cons (list  it
                          `(nth 0 ,argsym))
