@@ -91,7 +91,7 @@ Examples:
                      (0 argsym)
                      (1 `(cdr ,argsym))
                      (2 `(cddr ,argsym))
-                     (_ `(seq-drop ,argsym ,highest-index-used))))
+                     (_ `(-drop ,highest-index-used ,argsym))))
              bindings))
     (--map (!cons (list  it
                          `(nth 0 ,argsym))
@@ -151,7 +151,7 @@ Examples:
                      (0 argsym)
                      (1 `(cdr ,argsym))
                      (2 `(cddr ,argsym))
-                     (_ `(seq-drop ,argsym ,highest-index-used))))
+                     (_ `(-drop ,highest-index-used ,argsym))))
              bindings))
     (--map (!cons (list  it
                          `(nth 0 ,argsym))
